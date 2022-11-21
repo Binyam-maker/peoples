@@ -1,12 +1,5 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import Banner from "../components/Banner";
-import RecentArticles from "../components/RecentArticles";
-import ServicesContainer from "../components/ServicesContainer";
-import DifferencesSlider from "../components/DifferencesSlider";
-import ServicesListFooter from "../components/ServicesListFooter";
-import EmailSubscription from "../components/EmailSubscription";
-import ConnectWithUs from "../components/ConnectWithUs";
+import DashBoardLayout from "../components/DashBoardLayout";
 
 export default function Home() {
   return (
@@ -18,14 +11,12 @@ export default function Home() {
       </Head>
 
       <main>
-        <div className="relative grid gap-4 top-28 ">
-          <div className="container mx-auto">
-            <Banner />
-            <ServicesContainer />
-          </div>
-          <DifferencesSlider />
-        </div>
+        <div className="relative grid gap-4 top-28 "></div>
       </main>
     </div>
   );
 }
+
+Home.getLayout = function (page) {
+  return <DashBoardLayout>{page}</DashBoardLayout>;
+};

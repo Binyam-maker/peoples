@@ -17,7 +17,7 @@ const Login = () => {
             type={"password"}
           />
 
-          <Link href="/dashboard">
+          <Link href="/">
             <button className="px-4 py-[2px] text-white rounded-md bg-[#00A1f2] h-fit hover:bg-white hover:text-[#00A1f2]">
               Login
             </button>
