@@ -18,7 +18,6 @@ export default function Home() {
       </Head>
 
       <main>
-        <Navbar />
         <div className="relative grid gap-4 top-28 ">
           <div className="container mx-auto">
             <Banner />
@@ -27,13 +26,6 @@ export default function Home() {
           <DifferencesSlider />
         </div>
       </main>
-
-      <footer className="relative grid justify-center grid-cols-2 text-sm text-white bg-slate-800 top-28 md:flex">
-        <RecentArticles />
-        <ServicesListFooter />
-        <EmailSubscription />
-        <ConnectWithUs />
-      </footer>
     </div>
   );
 }

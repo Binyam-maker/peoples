@@ -4,7 +4,7 @@ import sectors_data from "../libs/sectors_data";
 
 const Signup = () => {
   return (
-    <div className=" h-screen  grid mx-auto bg-[#f6faff]">
+    <div className=" h-screen  grid mx-auto bg-[#f6faff] relative top-28">
       <div className="p-4 text-center align-middle place-self-center bg-white">
         <h className="font-serif text-2xl font-semibold">Sign up for free</h>
         <p>Create your account and start your free trial today</p>

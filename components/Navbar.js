@@ -25,6 +25,7 @@ function Navbar() {
         {links.map((link) => {
           return (
             <Link
+              key={link.name}
               className="text-[17px] hover:scale-105 hover:text-slate-600 text-slate-800"
               href={link.link}
             >
