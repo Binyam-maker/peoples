@@ -1,16 +1,27 @@
-import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import main_features_data from "../libs/main_features_data";
+import FeatureSidebar from "./FeatureSidebar";
+import selectService from "../feature/Home/HomeSlice";
+import { useDispatch } from "react-redux";
 
 const BigSidebar = () => {
+  const dispatch = useDispatch();
+  function onClick(feature) {
+    console.log(feature);
+    dispatch(selectService(feature));
+  }
   return (
-    <div className="flex">
-      <div className="bg-blue-600 h-full grid gap-4 relative top-28 w-1/6 text-white">
-        <Link href="/">Admin</Link>
-        <Link href="/">HR</Link>
-        <Link href="/">Payroll </Link>
-        <Link href="/">Leave</Link>
-        <Link href="/">Tax</Link>
-        <Link href="/">Reports</Link>
+    <div className="bg-blue-600 h-screen w-fit text-white p-4">
+      <div className="relative grid top-28 gap-4">
+        {main_features_data.map((feature) => {
+          return (
+            <FeatureSidebar
+              title={feature.title}
+              icon={feature.icon}
+              key={feature.title}
+            />
+          );
+        })}
       </div>
     </div>
   );

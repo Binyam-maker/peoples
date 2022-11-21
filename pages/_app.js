@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import Layout from "../components/Layout";
+import { wrapper } from "../store";
 function MyApp({ Component, pageProps }) {
   const renderWithLayout =
     Component.getLayout ||
@@ -9,4 +10,4 @@ function MyApp({ Component, pageProps }) {
   return renderWithLayout(<Component {...pageProps} />);
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

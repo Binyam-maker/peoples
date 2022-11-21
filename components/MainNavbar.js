@@ -1,25 +1,40 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { MdMenu } from "react-icons/md";
-import links from "../libs/links";
-
+import main_features_data from "../libs/main_features_data";
+import { useSelector } from "react-redux";
 function MainNavbar() {
+  const { currentFeature } = useSelector((store) => store.home);
+
+  const featureData = main_features_data.find(
+    (feature) => feature.title === currentFeature
+  );
+
   return (
-    <div className="container  fixed left-1/2 -translate-x-1/2 z-10 flex justify-between w-screen gap-4 p-4 align-middle bg-blue-100 ">
+    <div className=" fixed left-1/2 -translate-x-1/2 z-10 flex  w-screen gap-4 p-4 align-middle bg-white border shadow-lg overflow-hidden">
       {/* Logo */}
-      <div>
+      <div className="relative  left-4 m-2 hover:cursor-pointer">
         <Image
           src={"/images/logo_placeholder.png"}
-          alt="Tax in ethiopia logo"
+          alt="Your company's logo"
           width={100}
           height={100}
         />
       </div>
 
-      {/* Hamburger menu */}
-      <div className="my-auto text-3xl font-bold md:hidden hover:scale-105 hover:cursor-pointer text-slate-900 hover:text-slate-700">
-        <MdMenu />
+      {/* Sub-features List */}
+      <div className="grid  relative left-1/2 -translate-x-1/2 ">
+        <div className="w-full text-center font-serif font-semibold text-blue-700">
+          Company Name
+        </div>
+
+        <div className="grid grid-cols-3 md:flex gap-4 text-[#00A1f2] border-t-2   ">
+          {featureData &&
+            featureData.components.map((component) => (
+              <button className="hover:scale-105 transition" key={component}>
+                {component}
+              </button>
+            ))}
+        </div>
       </div>
     </div>
   );
