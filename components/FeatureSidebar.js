@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { selectService } from "../feature/Home/HomeSlice";
-const FeatureSidebar = ({ title, icon }) => {
+const FeatureSidebar = ({ title, icon, selectedFeature }) => {
   const dispatch = useDispatch();
   function onClick(feature) {
     console.log(feature);

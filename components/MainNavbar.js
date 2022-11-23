@@ -12,14 +12,14 @@ function MainNavbar() {
   return (
     <div className=" fixed left-1/2 -translate-x-1/2 z-10 flex  w-screen gap-4 p-4 align-middle bg-white border shadow-lg overflow-hidden">
       {/* Logo */}
-      <div className="relative  left-4 m-2 hover:cursor-pointer">
+      {/* <div className="relative  left-4 m-2 hover:cursor-pointer">
         <Image
           src={"/images/logo_placeholder.png"}
           alt="Your company's logo"
           width={100}
           height={100}
         />
-      </div>
+      </div> */}
 
       {/* Sub-features List */}
       <div className="grid  relative left-1/2 -translate-x-1/2 ">
