@@ -3,6 +3,11 @@ import FormRow from "../components/FormRow";
 import sectors_data from "../libs/sectors_data";
 
 const Signup = () => {
+  const handleOnSubmit = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setValues({ ...values });
+  };
   return (
     <div className=" h-screen  grid mx-auto bg-[#f6faff] relative top-28">
       <div className="p-4 text-center align-middle place-self-center bg-white">
@@ -53,7 +58,10 @@ const Signup = () => {
             placeholder={"account number"}
             type={"number"}
           />
-          <button className="px-4 py-[2px] text-white rounded-md bg-[#00A1f2] h-fit hover:bg-white hover:text-[#00A1f2]">
+          <button
+            className="px-4 py-[2px] text-white rounded-md bg-[#00A1f2] h-fit hover:bg-white hover:text-[#00A1f2]"
+            onClick={handleOnSubmit}
+          >
             Submit
           </button>
         </form>
