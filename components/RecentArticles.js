@@ -14,7 +14,7 @@ const RecentArticles = () => {
     <div className="grid gap-1 p-4">
       <h1 className="font-serif font-semibold ">Recent Articles</h1>
       {tempoArticle.map(({ title, link }) => {
-        return <Article title={title} link={link} />;
+        return <Article key={title} title={title} link={link} />;
       })}
     </div>
   );

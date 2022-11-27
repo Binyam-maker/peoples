@@ -37,13 +37,13 @@ function Navbar() {
 
       {/* Auth */}
       <div className="flex items-center gap-4 ">
-        <Link href="/login">
+        <Link href="/auth/signin">
           <button className="px-4 py-[2px] text-white rounded-md bg-[#00A1f2] h-fit hover:bg-white hover:text-[#00A1f2]">
-            Login
+            SignIn
           </button>
         </Link>
 
-        <Link href="/signup">
+        <Link href="/auth/signup">
           <button className="px-4 py-[2px] text-white rounded-md bg-[#00A1f2] h-fit hover:bg-white hover:text-[#00A1f2]">
             Signup
           </button>
