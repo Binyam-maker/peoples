@@ -5,8 +5,11 @@ import { useForm, Controller } from "react-hook-form";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import Head from "next/head";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../feature/auth/authSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -15,14 +18,11 @@ const Signup = () => {
     formState: { errors },
     reset,
   } = useForm();
-  // const handleOnSubmit = (e) => {
-  //   const name = e.target.name;
-  //   const value = e.target.value;
-  //   setValues({ ...values });
-  // };
+
   const onSubmit = (data) => {
-    console.log({ data });
-    reset();
+    console.log({ Signup: data });
+    dispatch(registerUser(data));
+    // reset();
   };
   return (
     <div className="mx-auto bg-[#f6faff] relative grid">
@@ -47,6 +47,7 @@ const Signup = () => {
             Company Name
           </label>
           <input
+            id="company_name"
             name={"company_name"}
             placeholder={"company name"}
             type={"text"}
@@ -81,15 +82,15 @@ const Signup = () => {
           {/* Phone */}
 
           <div>
-            {errors["phone-input"] && (
+            {errors["phone_number"] && (
               <p className="text-sm text-red-500">Invalid Phone Number</p>
             )}
             {/* <label htmlFor="phone-input">Phone Number</label> */}
-            <label for="email" className="text-start text-sm">
+            <label for="phone_number" className="text-start text-sm">
               Phone Number
             </label>
             <Controller
-              name="phone-input"
+              name="phone_number"
               control={control}
               rules={{
                 validate: (value) => isValidPhoneNumber(value),
@@ -99,7 +100,7 @@ const Signup = () => {
                   value={value}
                   onChange={onChange}
                   defaultCountry="ET"
-                  id="phone-input"
+                  id="phone_number"
                   placeholder=" phone number"
                   className="p-1 rounded-md border-2 outline-none width-full "
                 />
@@ -196,14 +197,14 @@ const Signup = () => {
           />
 
           {/* Drop Down */}
-          <label for="sectors" className="text-start text-sm">
+          <label for="sector" className="text-start text-sm">
             Sector :
           </label>
           <select
-            name="sectors"
-            id="sectors"
+            name="sector"
+            id="sector"
             className="p-1 rounded-md border-2 outline-none width-full "
-            {...register("sectors")}
+            {...register("sector")}
           >
             {sectors_data.map((sector) => {
               return (
@@ -228,7 +229,10 @@ const Signup = () => {
             placeholder={"tin"}
             type={"number"}
             className="p-1 rounded-md border-2  outline-none width-full "
-            {...register("tin", { required: "TIN number is required" })}
+            {...register("tin", {
+              required: "TIN number is required",
+              valueAsNumber: true,
+            })}
           />
 
           {/* Enterprise Number */}
@@ -248,6 +252,7 @@ const Signup = () => {
             className="p-1 rounded-md border-2  outline-none width-full "
             {...register("enterprise_number", {
               required: "Enterprise number is required",
+              valueAsNumber: true,
             })}
           />
 
@@ -267,6 +272,7 @@ const Signup = () => {
             className="p-1 rounded-md border-2  outline-none width-full "
             {...register("account_number", {
               required: "Account number is required",
+              valueAsNumber: true,
             })}
           />
 
