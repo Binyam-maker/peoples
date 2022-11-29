@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "../../../libs/prismadb";
+import signInUser from "../../../libs/signInUser";
 export const authOptions = {
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
@@ -9,7 +10,7 @@ export const authOptions = {
     Credentials({
       name: "Company",
       credentials: {
-        email: {
+        companyName: {
           label: "Company Name",
           type: "text",
           placeholder: "company name",
@@ -18,15 +19,16 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
         try {
-          const { email, password } = credentials;
+          console.log({ credentials });
+          const { companyName, password } = credentials;
 
-          const { user, error } = await loginUser(email, password);
+          const { user, error } = await signInUser(companyName, password);
           // send user object wto password and a default image link
 
           if (error) throw new Error(error);
 
           const sessionUser = {
-            name: user.name,
+            companyName: user.companyName,
             email: user.email,
             image: "/vercel.svg",
           };
@@ -44,6 +46,11 @@ export const authOptions = {
     colorScheme: "light",
     brandColor: "#00A1f2",
     logo: "/vercel.svg",
+  },
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      return baseUrl;
+    },
   },
   // pages: {
   //   signIn: "/auth/signin",

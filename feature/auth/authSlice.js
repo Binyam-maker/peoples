@@ -42,7 +42,7 @@ const authSlice = createSlice({
     [registerUser.fulfilled]: (state, { payload }) => {
       // after sign up is finished got to sigh in page
       state.isLoading = false;
-      // signIn();
+      signIn();
     },
     [registerUser.rejected]: (state) => {
       state.isLoading = false;

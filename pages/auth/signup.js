@@ -20,9 +20,8 @@ const Signup = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log({ Signup: data });
     dispatch(registerUser(data));
-    // reset();
+    reset();
   };
   return (
     <div className="mx-auto bg-[#f6faff] relative grid">
@@ -191,7 +190,7 @@ const Signup = () => {
           <input
             name={"website"}
             placeholder={"website (optional)"}
-            type={"text"}
+            type={"url"}
             className="p-1 rounded-md border-2  outline-none width-full "
             {...register("website")}
           />

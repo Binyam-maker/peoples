@@ -54,9 +54,9 @@ export default async function (req, res) {
       tin,
       website,
     };
-    console.log({ data });
+
     const newUser = await prisma.user.create({ data });
-    console.log({ newUser });
+
     res.status(StatusCodes.CREATED).json({ success: true, data: newUser });
     return;
   } catch (error) {

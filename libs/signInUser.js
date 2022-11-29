@@ -1,12 +1,9 @@
-import dbConnect from "./MongooseConnect";
-import User from "../model/User";
-
-export default async function loginUser(email, password) {
+import { PrismaClient } from "@prisma/client";
+import { verify } from "argon2";
+export default async function signInUser(companyName, password) {
+  const prisma = new PrismaClient();
   try {
-    // Connect
-    await dbConnect();
-
-    const user = await User.findOne({ email: email });
+    const user = await prisma.user.findFirst({ where: { companyName } });
 
     // handle 'no user found'
     if (!user) {
@@ -15,10 +12,11 @@ export default async function loginUser(email, password) {
 
     // check if password is correct
 
-    const isPasswordCorrect = await user.comparePassword(password);
+    // const isPasswordCorrect = await user.comparePassword(password);
+    const isValidPassword = await verify(user.password, password);
 
     // handle 'password is incorrect'
-    if (!isPasswordCorrect) {
+    if (!isValidPassword) {
       return { error: "Email or password does not match our records" };
     }
 

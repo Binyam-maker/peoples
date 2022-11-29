@@ -7,8 +7,8 @@ const BigSidebar = () => {
   const { currentFeature } = useSelector((store) => store.home);
 
   return (
-    <div className="bg-blue-600 h-screen w-fit text-white p-4">
-      <div className="relative grid top-28 gap-4">
+    <div className="bg-blue-600 h-full w-fit text-white p-4 fixed ">
+      <div className="grid gap-4">
         {main_features_data.map((feature) => {
           return (
             <FeatureSidebar

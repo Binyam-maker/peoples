@@ -32,9 +32,4 @@ export default function Home() {
 
 Home.getLayout = function (page) {
   return <DashBoardLayout>{page}</DashBoardLayout>;
-  // return (
-  //   <Layout>
-  //     <DashBoardLayout>{page}</DashBoardLayout>;
-  //   </Layout>
-  // );
 };
