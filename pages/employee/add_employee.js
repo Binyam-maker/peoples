@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import AddUpdateEmployee from "../../components/employee/AddUpdateEmployee";
 import DashBoardLayout from "../../components/DashBoardLayout";
 import MultiStep from "react-multistep";
-
 import BasicInformation from "../../components/employee/BasicInformation";
 import EmployeePosition from "../../components/employee/EmployeePosition";
 import PaymentMode from "../../components/employee/PaymentMode";
+import { addEmployee } from "../../feature/employee/employeeSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const steps = [
   { title: "Basic Information", component: <BasicInformation /> },
@@ -37,6 +37,11 @@ const nextStyle = {
 };
 
 const AddEmployee = () => {
+  const dispatch = useDispatch();
+  const { entry } = useSelector((state) => state.employee);
+  function handleSubmit() {
+    dispatch(addEmployee(entry));
+  }
   return (
     <div className="relative grid  w-full min-h-[85vh] ">
       <Head>
@@ -44,7 +49,7 @@ const AddEmployee = () => {
         <meta name="description" content="Add new employee to database" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="  place-self-center -translate-y-1/4 md:-translate-y-2/3  grid  w-full">
+      <main className="  place-self-center   grid  w-full">
         <h3 className="p-4 text-xl font-semibold font-serif  text-center text-slate-600">
           Add Employee
         </h3>
@@ -55,6 +60,12 @@ const AddEmployee = () => {
             prevStyle={prevStyle}
             nextStyle={nextStyle}
           />
+          <button
+            onClick={handleSubmit}
+            className="bg-mainBlue text-white w-fit px-4 py-1 place-self-center rounded-sm"
+          >
+            Submit
+          </button>
         </div>
       </main>
     </div>

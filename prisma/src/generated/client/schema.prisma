@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int      @id @default(autoincrement())
+  companyName      String   @unique @map("company_name")
+  email            String   @unique
+  password         String
+  address          String
+  phoneNumber      String   @unique @map("phone_number")
+  website          String?
+  sector           String
+  tin              Int      @unique
+  enterpriseNumber Int      @unique @map("enterprise_number")
+  accountNumber    Int      @unique @map("account_number")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  role             Role     @default(CompanyAdmin)
+}
+
+model Employee {
+  id                     Int    @id @default(autoincrement())
+  name                   String
+  employeeNumber         String
+  dateOfBirth            String
+  gender                 String
+  dateOfJoining          String
+  probationPeriod        String
+  confirmationDate       String
+  email                  String
+  mobileNumber           String
+  emergencyContactName   String
+  emergencyContactNumber String
+  designation            String
+  department             String
+  location               String
+  employeeTIN            String
+  basicSalary            String
+  paymentType            String
+  employeeBankName       String
+  employeeAccountNumber  String
+  employmentType         String
+}
+
+enum Role {
+  CompanyAdmin
+  CompanyUser
+}

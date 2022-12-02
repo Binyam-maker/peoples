@@ -42,7 +42,7 @@ const Signup = () => {
               {errors.company_name.message}
             </p>
           )}
-          <label for="company_name" className="text-start text-sm">
+          <label htmlFor="company_name" className="text-start text-sm">
             Company Name
           </label>
           <input
@@ -57,7 +57,7 @@ const Signup = () => {
           />
 
           {/* Email */}
-          <label for="email" className="text-start text-sm">
+          <label htmlFor="email" className="text-start text-sm">
             Email
           </label>
 
@@ -85,7 +85,7 @@ const Signup = () => {
               <p className="text-sm text-red-500">Invalid Phone Number</p>
             )}
             {/* <label htmlFor="phone-input">Phone Number</label> */}
-            <label for="phone_number" className="text-start text-sm">
+            <label htmlFor="phone_number" className="text-start text-sm">
               Phone Number
             </label>
             <Controller
@@ -113,7 +113,7 @@ const Signup = () => {
               {errors.password.message}
             </p>
           )}
-          <label for="password" className="text-start text-sm">
+          <label htmlFor="password" className="text-start text-sm">
             Password
           </label>
           <input
@@ -146,7 +146,7 @@ const Signup = () => {
               Your passwords do no match
             </p>
           )}
-          <label for="confirm_password" className="text-start text-sm">
+          <label htmlFor="confirm_password" className="text-start text-sm">
             Confirm Password
           </label>
           <input
@@ -167,7 +167,7 @@ const Signup = () => {
           {errors.address && (
             <p className="text-sm text-red-500">{errors.address.message}</p>
           )}
-          <label for="address" className="text-start text-sm">
+          <label htmlFor="address" className="text-start text-sm">
             Address
           </label>
           <input
@@ -184,7 +184,7 @@ const Signup = () => {
           {errors.website && (
             <p className="text-sm text-red-500">{errors.website.message}</p>
           )}
-          <label for="website" className="text-start text-sm">
+          <label htmlFor="website" className="text-start text-sm">
             Website
           </label>
           <input
@@ -196,7 +196,7 @@ const Signup = () => {
           />
 
           {/* Drop Down */}
-          <label for="sector" className="text-start text-sm">
+          <label htmlFor="sector" className="text-start text-sm">
             Sector :
           </label>
           <select
@@ -220,7 +220,7 @@ const Signup = () => {
           {errors.tin && (
             <p className="text-sm text-red-500">{errors.tin.message}</p>
           )}
-          <label for="tin" className="text-start text-sm">
+          <label htmlFor="tin" className="text-start text-sm">
             TIN
           </label>
           <input
@@ -241,7 +241,7 @@ const Signup = () => {
               {errors.enterprise_number.message}
             </p>
           )}
-          <label for="enterprise_number" className="text-start text-sm">
+          <label htmlFor="enterprise_number" className="text-start text-sm">
             Enterprise Number
           </label>
           <input
@@ -261,7 +261,7 @@ const Signup = () => {
               {errors.account_number.message}
             </p>
           )}
-          <label for="account_number" className="text-start text-sm">
+          <label htmlFor="account_number" className="text-start text-sm">
             Account Number
           </label>
           <input

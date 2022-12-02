@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import main_features_data from "../libs/main_features_data";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 function MainNavbar() {
+  const [showMenu, setShowMenu] = useState(false);
   const { currentFeature } = useSelector((store) => store.home);
 
   const featureData = main_features_data.find(
@@ -29,10 +31,17 @@ function MainNavbar() {
 
         <div className="grid grid-cols-3 md:flex gap-4 text-[#00A1f2] border-t-2   ">
           {featureData &&
-            featureData.components.map((component) => (
-              <button className="hover:scale-105 transition" key={component}>
-                {component}
-              </button>
+            featureData.components.map(({ name, link }, i) => (
+              <div>
+                <Link
+                  href={link}
+                  className="hover:scale-105 transition"
+                  key={name}
+                >
+                  {name}
+                </Link>
+                {showMenu && <div>hello</div>}
+              </div>
             ))}
         </div>
       </div>
