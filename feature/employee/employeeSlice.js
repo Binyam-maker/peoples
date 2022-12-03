@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   entry: {
@@ -51,6 +52,7 @@ export const getAllEmployees = createAsyncThunk(
     try {
       const resp = await axios.get("/api/employee/get_all_employees");
       const allEmployees = resp.data;
+      console.log({ allEmployees });
       return allEmployees;
     } catch (error) {
       thunkApi.rejectWithValue(error.response.data.msg);
@@ -80,11 +82,14 @@ const employeeSlice = createSlice({
       state.isLoading = true;
     },
     [getAllEmployees.fulfilled]: (state, { payload }) => {
-      state.allEmployees = [...payload];
+      state.allEmployees = payload.data;
       state.isLoading = false;
     },
     [getAllEmployees.rejected]: (state) => {
       state.isLoading = false;
+    },
+    [HYDRATE]: (state, action) => {
+      state.allEmployees = action.payload.employees.allEmployees;
     },
   },
 });

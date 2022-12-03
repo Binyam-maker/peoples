@@ -3,7 +3,7 @@ import main_features_data from "../libs/main_features_data";
 import FeatureSidebar from "./FeatureSidebar";
 import { useSelector } from "react-redux";
 
-const BigSidebar = () => {
+const MainSideBar = () => {
   const { currentFeature } = useSelector((store) => store.home);
 
   return (
@@ -24,4 +24,4 @@ const BigSidebar = () => {
   );
 };
 
-export default BigSidebar;
+export default MainSideBar;

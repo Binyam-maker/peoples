@@ -10,6 +10,7 @@ const main_features_data = [
     title: "Home",
     icon: <FiHome />,
     components: [],
+    link: "/",
   },
   {
     title: "Admin",
@@ -27,7 +28,15 @@ const main_features_data = [
     components: [
       { name: "Overview", link: "/employee" },
       { name: "Employee Directory", link: "/employee/employee_directory" },
-      { name: "Employee", link: "" },
+      {
+        name: "Employee",
+        link: "",
+        subMenu: [
+          { subName: "Add Employee", link: "/employee/add_employee" },
+          { subName: "Update Employee", link: "/employee/update_employee" },
+          { subName: "Delete Employee", link: "/employee/delete_employee" },
+        ],
+      },
       { name: "Templates", link: "employee/templates" },
     ],
   },
