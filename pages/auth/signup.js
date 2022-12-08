@@ -1,5 +1,4 @@
 import React from "react";
-import FormRow from "../../components/FormRow";
 import sectors_data from "../../libs/sectors_data";
 import { useForm, Controller } from "react-hook-form";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";

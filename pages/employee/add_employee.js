@@ -6,7 +6,10 @@ import BasicInformation from "../../components/employee/BasicInformation";
 import EmployeePosition from "../../components/employee/EmployeePosition";
 import PaymentMode from "../../components/employee/PaymentMode";
 import { addEmployee } from "../../feature/employee/employeeSlice";
+import { openModal } from "../../feature/summary/summarySlice";
 import { useDispatch, useSelector } from "react-redux";
+import AddUpdateEmployee from "../../components/employee/AddUpdateEmployee";
+import SummaryModal from "../../components/SummaryModal";
 
 const steps = [
   { title: "Basic Information", component: <BasicInformation /> },
@@ -39,8 +42,11 @@ const nextStyle = {
 const AddEmployee = () => {
   const dispatch = useDispatch();
   const { entry } = useSelector((state) => state.employee);
+  const { isModalOpen } = useSelector((state) => state.summary);
   function handleSubmit() {
-    dispatch(addEmployee(entry));
+    // e.preventDefault();
+    // dispatch(addEmployee(entry));
+    dispatch(openModal());
   }
   return (
     <div className="relative grid  w-full min-h-[85vh] ">
@@ -53,13 +59,9 @@ const AddEmployee = () => {
         <h3 className="p-4 text-xl font-semibold font-serif  text-center text-slate-600">
           Add Employee
         </h3>
+        {isModalOpen && <SummaryModal />}
         <div className="grid justify-center">
-          <MultiStep
-            activeStep={0}
-            steps={steps}
-            prevStyle={prevStyle}
-            nextStyle={nextStyle}
-          />
+          <AddUpdateEmployee />
           <button
             onClick={handleSubmit}
             className="bg-mainBlue text-white w-fit px-4 py-1 place-self-center rounded-sm"

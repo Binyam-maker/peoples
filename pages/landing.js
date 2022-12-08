@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import Banner from "../components/Banner";
-import ServicesContainer from "../components/ServicesContainer";
-import DifferencesSlider from "../components/DifferencesSlider";
+import Banner from "../components/landing/Banner";
+import ServicesContainer from "../components/landing/ServicesContainer";
+import DifferencesSlider from "../components/landing/DifferencesSlider";
 
 const landing = () => {
   return (

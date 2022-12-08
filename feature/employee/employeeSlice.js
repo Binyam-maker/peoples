@@ -30,6 +30,7 @@ const initialState = {
   },
   isLoading: false,
   allEmployees: [],
+  update: {},
 };
 
 export const addEmployee = createAsyncThunk(
@@ -41,6 +42,38 @@ export const addEmployee = createAsyncThunk(
       const newEmployee = resp.data;
       console.log({ newEmployee });
       return newEmployee;
+    } catch (error) {
+      thunkApi.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+export const updateEmployee = createAsyncThunk(
+  "employee/updateEmployee",
+  async (updateData, thunkApi) => {
+    try {
+      console.log({ updateData });
+      const resp = await axios.patch("/api/employee/update_employee", {
+        updateData,
+      });
+      const updatedEmployee = resp.data;
+      console.log({ updatedEmployee });
+      return updatedEmployee;
+    } catch (error) {
+      thunkApi.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+export const deleteEmployee = createAsyncThunk(
+  "employee/deleteEmployee",
+  async (id, thunkApi) => {
+    try {
+      console.log(id);
+      const resp = await axios.post("/api/employee/delete_employee", {
+        id,
+      });
+      const deletedEmployee = resp.data;
+      console.log({ deletedEmployee });
+      return deletedEmployee;
     } catch (error) {
       thunkApi.rejectWithValue(error.response.data.msg);
     }
@@ -66,6 +99,10 @@ const employeeSlice = createSlice({
     addEntry: (state, { payload }) => {
       state.entry = { ...state.entry, ...payload };
     },
+    updateEntry: (state, { payload }) => {
+      const { id } = state.entry;
+      state.update = { ...state.update, ...payload, id };
+    },
   },
   extraReducers: {
     [addEmployee.pending]: (state) => {
@@ -76,6 +113,29 @@ const employeeSlice = createSlice({
       state.isLoading = false;
     },
     [addEmployee.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [updateEmployee.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updateEmployee.fulfilled]: (state, { payload }) => {
+      state.entry = { ...payload };
+      state.update = {};
+      state.isLoading = false;
+    },
+    [updateEmployee.rejected]: (state) => {
+      state.isLoading = false;
+      state.update = {};
+    },
+    [deleteEmployee.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteEmployee.fulfilled]: (state, { payload }) => {
+      state.entry = {};
+      state.update = {};
+      state.isLoading = false;
+    },
+    [deleteEmployee.rejected]: (state) => {
       state.isLoading = false;
     },
     [getAllEmployees.pending]: (state) => {
@@ -94,5 +154,5 @@ const employeeSlice = createSlice({
   },
 });
 
-export const { addEntry } = employeeSlice.actions;
+export const { addEntry, updateEntry } = employeeSlice.actions;
 export default employeeSlice.reducer;

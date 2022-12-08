@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addEntry } from "../../feature/employee/employeeSlice";
+import { addEntry, updateEntry } from "../../feature/employee/employeeSlice";
 import OtherBenefits from "./OtherBenefits";
 
-const PaymentMode = () => {
+const PaymentMode = ({ data }) => {
   const {
-    entry: {
-      paymentType,
-      basicSalary,
-      otherBenefits,
-      employeeBankName,
-      employeeAccountNumber,
-    },
-  } = useSelector((state) => state.employee);
+    paymentType,
+    basicSalary,
+    otherBenefits,
+    employeeBankName,
+    employeeAccountNumber,
+  } = data;
+
   const dispatch = useDispatch();
   const [selectedPaymentType, setSelectedPaymentType] = useState(paymentType);
 
@@ -21,10 +20,9 @@ const PaymentMode = () => {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
-    console.log({ [name]: value });
-    if (name === "basicSalary" || name === "employeeAccountNumber")
-      parseInt(value);
+
     dispatch(addEntry({ [name]: value }));
+    dispatch(updateEntry({ [name]: value }));
   };
 
   return (

@@ -26,7 +26,7 @@ const main_features_data = [
     title: "HR",
     icon: <BsPeople />,
     components: [
-      { name: "Overview", link: "/employee" },
+      { name: "Overview", link: "/employee/overview" },
       { name: "Employee Directory", link: "/employee/employee_directory" },
       {
         name: "Employee",
@@ -44,9 +44,12 @@ const main_features_data = [
     title: "Payroll",
     icon: <MdOutlineAttachMoney />,
     components: [
-      { name: "Attendance", link: "" },
-      { name: "Loan Management", link: "" },
-      { name: "Severance & Termination payments", link: "" },
+      { name: "Overview", link: "/payroll/overview" },
+      { name: "Loan Management", link: "/payroll/loan_management" },
+      {
+        name: "Severance & Termination",
+        link: "/payroll/severance_and_termination",
+      },
     ],
   },
   {

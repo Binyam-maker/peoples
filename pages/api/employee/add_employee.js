@@ -1,7 +1,6 @@
-import { PrismaClient } from "../../../prisma/src/generated/client";
+import prisma from "../../../libs/prismaClient";
 import { StatusCodes } from "http-status-codes";
-import { db } from "../../../libs/prismaConnection";
-// import prisma from "../../../libs/prismaClient";
+
 export default async function (req, res) {
   const { employee } = req.body;
   console.log(employee);

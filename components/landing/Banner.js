@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import users from "../public/images/users.svg";
+import users from "../../public/images/users.svg";
 import Link from "next/link";
 
 const Banner = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Slider from "react-slick";
 import Difference from "./Difference";
-import differences_data from "../libs/differences_data";
+import differences_data from "../../libs/differences_data";
 const Differences = () => {
   const settings = {
     dots: true,

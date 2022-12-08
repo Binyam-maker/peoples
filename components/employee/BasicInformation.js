@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "react-phone-number-input/style.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addEntry } from "../../feature/employee/employeeSlice";
+import { addEntry, updateEntry } from "../../feature/employee/employeeSlice";
 
-const BasicInformation = () => {
-  const { entry } = useSelector((state) => state.employee);
+const BasicInformation = ({ data }) => {
   const {
     name,
     dateOfBirth,
@@ -13,15 +12,15 @@ const BasicInformation = () => {
     mobileNumber,
     emergencyContactName,
     emergencyContactNumber,
-  } = entry;
+  } = data;
   const dispatch = useDispatch();
 
   // Send data changes to the store
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log({ [name]: value });
     dispatch(addEntry({ [name]: value }));
+    dispatch(updateEntry({ [name]: value }));
   };
   return (
     <div className="">

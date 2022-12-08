@@ -1,6 +1,6 @@
 import React from "react";
-import services_data from "../libs/services_data";
-import Services from "./Services";
+import services_data from "../../libs/services_data";
+import Services from "../Services";
 
 const ServicesContainer = () => {
   return (

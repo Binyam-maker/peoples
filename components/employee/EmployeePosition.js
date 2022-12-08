@@ -1,36 +1,30 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addEntry } from "../../feature/employee/employeeSlice";
+import { addEntry, updateEntry } from "../../feature/employee/employeeSlice";
 
-const EmployeePosition = () => {
+const EmployeePosition = ({ data }) => {
   const {
-    entry: {
-      designation,
-      department,
-      location,
-      employmentType,
-      employeeNumber,
-      dateOfJoining,
-      confirmationDate,
-      probationPeriod,
-      basicSalary,
-      employeeTIN,
-    },
-  } = useSelector((state) => state.employee);
+    designation,
+    department,
+    location,
+    employmentType,
+    employeeNumber,
+    dateOfJoining,
+    confirmationDate,
+    probationPeriod,
+    basicSalary,
+    employeeTIN,
+  } = data;
+
   const dispatch = useDispatch();
 
   // Send data changes to the store
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    if (
-      name === "employeeNumber" ||
-      name === "employeeTIN" ||
-      name === "probationPeriod"
-    )
-      parseInt(value);
-    console.log({ [name]: value });
+
     dispatch(addEntry({ [name]: value }));
+    dispatch(updateEntry({ [name]: value }));
   };
 
   return (
